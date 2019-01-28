@@ -30,37 +30,63 @@ Like：    用于在where子句中搜索列中的指定模式
           3) 选取名字中包含"龙"的学生                                      select * from Student where Name like '%龙%';
           4) 选取名字中不包含"龙"的学生                                    select * from Student where Name not like '%龙%';
 
-In：
-Between：
+In：      允许我们在where子句中规定多个值
+
+Between： 用于选取介于两个值之间的数据范围
+
 Aliases：
+
 Join：
+
 Inner Join：
+
 Left Join：
+
 Right Join：
+
 Full join：
+
 Union：
+
 Select Into：
+
 Create DB：
+
 Create Table：
+
 Constraints：
+
 Not Null：
+
 Unique：
+
 Primary Key：
+
 Foreign Key：
+
 Check：
+
 Default：
+
 Create Index：
+
 Drop：
+
 Alter：
+
 Increment：
+
 View：
+
 Date：
+
 Nulls：
+
 isnull（）：
 
 通配符：  替代一个或多个字符 (必须和like运算符一起使用）                              
          替代一个或多个字符                   %                            select * from Student where Name like '%龙%';                                                  
          仅替代一个字符                       -                            select * from Student where Name like '张_灵';                        
          字符列中的任何单一字符           [charlist]                        select * from Student where Name like '[张王李]%';(张或王或李开头的学生)                     
-         不在字符列中的任何单一字符 [^charlist] 或 [!charlist]               select * from Student where Name like '[!张王李]%';                        
+         不在字符列中的任何单一字符 [^charlist] 或 [!charlist]              select * from Student where Name like '[!张王李]%';                        
                      
