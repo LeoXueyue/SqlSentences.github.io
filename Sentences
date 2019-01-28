@@ -45,8 +45,13 @@ Like：    用于在where子句中搜索列中的指定模式
 
 In：      允许我们在where子句中规定多个值
 
+          选取姓氏为Adams和Carter的人                                     select * from Persons where LastName in ('Adams','Carter');
+
 
 Between： 用于选取介于两个值之间的数据范围
+
+          选取以字母顺序显示介于"Adams"(包括)和"Carter"(不包括)之间的人      select * from Persons where LastName beetween 'Adams' and 'Carter';
+          选取之外的使用Not操作符                                          select * from Persons where LastName not beetween 'Adams' and 'Carter';
 
 
 Aliases： 用于为列名称和表名称指定别名
@@ -113,36 +118,104 @@ Not Null：      约束强制列不接受NULL值                                
 
 Unique：        约束唯一标识数据库表中的每条记录。Unique和Primary Key约束均为列或者列集合提供了唯一性的保证。每个表可以有多个Unique约束，但是只能有一个Primary Key约束。
 
+                创建表时添加约束：
+                create table Persons(Id_P int not null unique,
+                                     LastName varchar(255),
+                                     FirstName varchar(255),
+                                     Address varchar(255),
+                                     City varchar(255));
+
+
+Primary Key：   约束唯一标识数据库表中的每条记录。主键必须包含唯一的值。主键列不能包含NULL值。每个表应该有一个主键，并且每个表只能有一个主键。
+
+                创建表时添加约束：
+                create table Persons(Id_P int not null primary key,
+                                     LastName varchar(255),
+                                     FirstName varchar(255),
+                                     Address varchar(255),
+                                     City varchar(255));
+                
+                已存在表的情况下添加Primary Key约束：
+                alter table Persons add priamry key (Id_P)
+                
+                添加多个Primary Key约束：
+                alter table Persons add constraint pk_PersonID primary key (Id_P,LastName)
+                
+                撤销Primary Key约束:
+                after table Persons drop constraint pk_PersonID
+
+
+Foreign Key：   一个表中的Foreign Key指向另一个表中的Primary Key
+
+                创建表时添加约束：
+                create table Persons(Id_P int not null primary key,
+                                     OrderNo int not null,
+                                     Id_P int foreign key references Personns(Is_P));
+                
+                已存在表的情况下添加约束：
+                alter table Orders add foreign key (Id_P) rederences Persons(Id_P)
+                
+                添加多个约束：
+                alter table Orders add constraint fk_PerOrders foreign key (Id_P) references Persons(Id_P)
+                
+                撤销约束:
+                after table Persons drop constraint fk_PerOrders
+
+
+Check：         约束用于限制列中的值的范围。如果对单个列定义check约束，那么该列值允许特定的值；如果对一个表定义check约束，那么此约束会在特定的列中对值进行限制。
+
+                创建表时添加约束：
+                create table Persons(Id_P int not null check(Id_P>0),
+                                     LastName varchar(255),
+                                     FirstName varchar(255),
+                                     Address varchar(255),
+                                     City varchar(255));
+
+                已存在表的情况下添加Default约束：
+                alter table Persons add check (Id_P>0)
+                
+                添加多个Primary Key约束：
+                alter table Persons add constraint chk_Person primary key (Id_P>0,City='Sandnes')
+                
+                撤销check约束:
+                after table Persons drop constraint chk_Person
+
+
+Default：       约束用于向列中插入默认值，如果没有规定其他的值，那么会将默认值添加到所有的新纪录中。
+
+                创建表时添加约束：
                 create table Persons(Id_P int not null,
                                      LastName varchar(255),
                                      FirstName varchar(255),
                                      Address varchar(255),
-                                     City varchar(255),
-                                     unique (Id_P));
+                                     City varchar(255) default 'Sandnes');
+
+                已存在表的情况下添加Default约束：
+                alter table Persons alter column City set default 'Sandnes'
+                
+                撤销Default约束:
+                after table Persons alter column City drop default
 
 
-Primary Key：
+Create Index：  在表中创建索引，用户无法看到索引，它们只能被用来加速搜索/查询
 
 
-Foreign Key：
+Drop：           删除索引、表和数据库
+
+                 删除索引              drop index index_name on table_name
+                 删除表                drop table table_name
+                 删除数据库             drop database database_name
+                 清除表内数据，不删除表  truncate table table_name
 
 
-Check：
+Alter：          用于在已有的表中添加、修改或删除列
+
+                 添加新列                         alter table Persons add Birthday date
+                 改变数据类型                      alter table Persons alter column Birthday year
+                 删除"Person"表中的"Birthday"列    alter table Person drop column Birthday  
 
 
-Default：
-
-
-Create Index：
-
-
-Drop：
-
-
-Alter：
-
-
-Increment：
+Increment：      会在新纪录插入表中时生成一个唯一的数字
 
 
 View：
