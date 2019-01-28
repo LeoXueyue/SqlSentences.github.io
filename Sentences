@@ -1,8 +1,15 @@
-查询语句：
-插入语句：
-更新语句：
-删除语句：
-where：
+                      格式                                                           例子
+查询语句： select 列名称 from  表名称;                                   select * from Student;select Id,Name from Student;
+
+插入语句： insert into 表名称 values (值1,值2,...);                      insert into Student values ('01','张三','男');
+          insert into 表名称 （列1,列2,...) values (值1,值2,...);        insert into Student (Id,Name,Sex) values ('01','张三','男');
+
+更新语句： update 表名称 set 列名称 = 新值 where 列名称 = 某值;            update Student set 
+
+删除语句:  delect from 表名称 where 列名称 = 某值;                        delete from Student where Id = '01';
+                                                                        delete * from Student;delete from Student;(不删表，删除所有行）
+
+where：   
 and&or
 order by：
 distinct：
