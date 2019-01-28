@@ -1,1 +1,3 @@
+语法：select 列名称 from 表名称
 
+例如：select Id from Student; select * from Student; select Id,Name from Student;
