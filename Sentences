@@ -4,17 +4,27 @@
 插入语句： insert into 表名称 values (值1,值2,...);                      insert into Student values ('01','张三','男');
           insert into 表名称 （列1,列2,...) values (值1,值2,...);        insert into Student (Id,Name,Sex) values ('01','张三','男');
 
-更新语句： update 表名称 set 列名称 = 新值 where 列名称 = 某值;            update Student set 
+更新语句： update 表名称 set 列名称 = 新值 where 列名称 = 某值;            update Student set Name = '李四' where Id = '01';
 
 删除语句:  delect from 表名称 where 列名称 = 某值;                        delete from Student where Id = '01';
                                                                         delete * from Student;delete from Student;(不删表，删除所有行）
 
-where：   
-and&or
-order by：
-distinct：
-Top：
-Like：
+Where：   有条件的从表中选取数据                                          select * from Student where Sex = '男';
+
+And&Or:   基于一个以上条件对记录进行过滤,两者同时使用需要加圆括号                                   
+          And 要求两个或多个条件同时成立                                  select * from Student where Name = '张三' and Sex = '男';
+          Or  要求两个或多个条件中任何一个成立                             select * from Student where Name = '李四' or Sex = '女';
+           
+Order by：用于对结果集进行排序（默认升序ASC）                              select * from Grade order by Score DESC;
+
+Distinct：用于返回唯一不同的值                                            select distinct Sex from Student; 
+
+Top：     用于规定要返回记录的数目（不是所有数据库系统支持）                 
+          select top number from 表名称(SQL)                             select top 3 * from Student;
+                                       (MySQL）                          select * from Student limit 3;
+                                       (Oracle)                          select * from Student where rownum <=5;
+                                       
+Like：    
 In：
 Between：
 Aliases：
