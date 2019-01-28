@@ -1,0 +1,3 @@
+语法：insert into 表名称 values (值1，值2，...);insert into 表名称 (列1，列2，...) values (值1，值2，...);
+
+例如：insert into Student values ('01','张三','男'); insert into Student (Id,Name,Sex) values ('01','张三','男');
