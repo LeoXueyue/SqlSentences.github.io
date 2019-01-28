@@ -24,7 +24,12 @@ Top：     用于规定要返回记录的数目（不是所有数据库系统支
                                        (MySQL）                          select * from Student limit 3;
                                        (Oracle)                          select * from Student where rownum <=5;
                                        
-Like：    
+Like：    用于在where子句中搜索列中的指定模式
+          1）选取名字以"张"开始的学生                                      select * from Student where Name like '张%';
+          2) 选取Id以"0"结尾的学生                                        select * from Student where Id like '%1';
+          3) 选取名字中包含"龙"的学生                                      select * from Student where Name like '%龙%';
+          4) 选取名字中不包含"龙"的学生                                    select * from Student where Name not like '%龙%';
+
 In：
 Between：
 Aliases：
@@ -52,3 +57,10 @@ View：
 Date：
 Nulls：
 isnull（）：
+
+通配符：  替代一个或多个字符 (必须和like运算符一起使用）                              
+         替代一个或多个字符                   %                            select * from Student where Name like '%龙%';                                                  
+         仅替代一个字符                       -                            select * from Student where Name like '张_灵';                        
+         字符列中的任何单一字符           [charlist]                        select * from Student where Name like '[张王李]%';(张或王或李开头的学生)                     
+         不在字符列中的任何单一字符 [^charlist] 或 [!charlist]               select * from Student where Name like '[!张王李]%';                        
+                     
