@@ -1,88 +1,131 @@
                       格式                                                           例子
 查询语句： select 列名称 from  表名称;                                   select * from Student;select Id,Name from Student;
 
+
 插入语句： insert into 表名称 values (值1,值2,...);                      insert into Student values ('01','张三','男');
           insert into 表名称 （列1,列2,...) values (值1,值2,...);        insert into Student (Id,Name,Sex) values ('01','张三','男');
 
+
 更新语句： update 表名称 set 列名称 = 新值 where 列名称 = 某值;            update Student set Name = '李四' where Id = '01';
+
 
 删除语句:  delect from 表名称 where 列名称 = 某值;                        delete from Student where Id = '01';
                                                                         delete * from Student;delete from Student;(不删表，删除所有行）
 
+
 Where：   有条件的从表中选取数据                                          select * from Student where Sex = '男';
 
-And&Or:   基于一个以上条件对记录进行过滤,两者同时使用需要加圆括号                                   
+
+And&Or:   基于一个以上条件对记录进行过滤,两者同时使用需要加圆括号    
+
           And 要求两个或多个条件同时成立                                  select * from Student where Name = '张三' and Sex = '男';
           Or  要求两个或多个条件中任何一个成立                             select * from Student where Name = '李四' or Sex = '女';
            
+           
 Order by：用于对结果集进行排序（默认升序ASC）                              select * from Grade order by Score DESC;
+
 
 Distinct：用于返回唯一不同的值                                            select distinct Sex from Student; 
 
-Top：     用于规定要返回记录的数目（不是所有数据库系统支持）                 
+
+Top：     用于规定要返回记录的数目（不是所有数据库系统支持）   
+
           select top number from 表名称(SQL)                             select top 3 * from Student;
                                        (MySQL）                          select * from Student limit 3;
                                        (Oracle)                          select * from Student where rownum <=5;
-                                       
+                
+                
 Like：    用于在where子句中搜索列中的指定模式
+
           1）选取名字以"张"开始的学生                                      select * from Student where Name like '张%';
           2) 选取Id以"0"结尾的学生                                        select * from Student where Id like '%1';
           3) 选取名字中包含"龙"的学生                                      select * from Student where Name like '%龙%';
           4) 选取名字中不包含"龙"的学生                                    select * from Student where Name not like '%龙%';
 
+
 In：      允许我们在where子句中规定多个值
+
 
 Between： 用于选取介于两个值之间的数据范围
 
-Aliases：
+
+Aliases： 用于为列名称和表名称指定别名
+
+          列出名为"John Adams"的所有订单(表别名）                          select po.OrderID,p.LastName,p.FirstName from Person as p,Product_Order as po where p.LastName = 'Adams' and p.FirstName = 'Join'
+          select 列名称 as alias_name  (列别名）                          select LastName as Family,FirstName as Name from Person;
+
 
 Join：
 
+
 Inner Join：
+
 
 Left Join：
 
+
 Right Join：
+
 
 Full join：
 
+
 Union：
+
 
 Select Into：
 
+
 Create DB：
+
 
 Create Table：
 
+
 Constraints：
+
 
 Not Null：
 
+
 Unique：
+
 
 Primary Key：
 
+
 Foreign Key：
+
 
 Check：
 
+
 Default：
+
 
 Create Index：
 
+
 Drop：
+
 
 Alter：
 
+
 Increment：
+
 
 View：
 
+
 Date：
+
 
 Nulls：
 
+
 isnull（）：
+
 
 通配符：  替代一个或多个字符 (必须和like运算符一起使用）                              
          替代一个或多个字符                   %                            select * from Student where Name like '%龙%';                                                  
