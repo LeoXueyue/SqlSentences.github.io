@@ -74,28 +74,51 @@ Right Join：   (右连接) 从右表那里返回所有的行，即使在左表�
                 select Persons.LastName,Persons.FirstName,Orders.OrderNo from Persons right join Orders on Persons.Id_p = Orders.Id_p Order by Persons.LastName;
 
 
-Full join：    
+Full join：    只要其中某个表存在匹配，Full Join关键字就会返回行 (返回的是两个表的并集，有匹配的合并，没有匹配的单独列出来，未匹配的位置为空）
+
+               select Persons.LastName,Persons.FirstName,Orders.OrderNo from Persons full join Orders on Persons.Id_p = Orders.Id_p order by Persons.LastName;
 
 
-Union：
+Union：        用于合并两个或多个select语句的结果集 (默认的。union操作符选取不同的值。如果允许重复的值，请使用union all）
+
+               (union)相同的合并为1个  select E_name from Employees_China union select E_name from Employees_USA
+               (union all)相同的并不合并，依旧列出来  select E_name from Employees_China union all select E_name from Employees_USA;
 
 
-Select Into：
+Select Into：  select into 语句从一个表中选取数据，然后把数据插入另一个表中。常用于创建表的备份附件或者用于对记录进行存档。
+
+               select * into Persons_backup from Persons
+               select * into Persons_backup in 'Backuo.mdb' from Persons;
 
 
-Create DB：
+Create DB：    create database database_name                             create database my_db;
 
 
-Create Table：
+Create Table： create table 表名称（列名称1 数据类型，列名称2，数据类型,...) create table Persons(Id_P int,
+                                                                                              LastName varchar(255),
+                                                                                              FirstName varchar(255),
+                                                                                              Address varchar(255),
+                                                                                              City varchar(255));
 
 
-Constraints：
+Constraints:    约束
 
 
-Not Null：
+Not Null：      约束强制列不接受NULL值                                     create table Persons(Id_P int not null,
+                                                                                              LastName varchar(255),
+                                                                                              FirstName varchar(255),
+                                                                                              Address varchar(255),
+                                                                                              City varchar(255));
 
 
-Unique：
+Unique：        约束唯一标识数据库表中的每条记录。Unique和Primary Key约束均为列或者列集合提供了唯一性的保证。每个表可以有多个Unique约束，但是只能有一个Primary Key约束。
+
+                create table Persons(Id_P int not null,
+                                     LastName varchar(255),
+                                     FirstName varchar(255),
+                                     Address varchar(255),
+                                     City varchar(255),
+                                     unique (Id_P));
 
 
 Primary Key：
