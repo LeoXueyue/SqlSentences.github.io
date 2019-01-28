@@ -55,19 +55,26 @@ Aliases： 用于为列名称和表名称指定别名
           select 列名称 as alias_name  (列别名）                          select LastName as Family,FirstName as Name from Person;
 
 
-Join：
+Join：    用于根据两个或多个表中的列之间的关系，查询数据
+
+                     引用两个表的方式                                      select Persons.LastName,Persons.FirstName,Orders.OrderNo from Persons,Orders where Persons.Id_p = Orders.Id_p;
+                     Join的方式                                           select Persons.LastName,Persons.FirstName,Orders.OrderNo from Person inner join Orders on Persons.Id_p = Orders.Id_p order by Persons.LastName
 
 
-Inner Join：
+Inner Join：   (内连接) 在表中存在至少一个匹配时，inner join 关键字返回行 （与Join相同）   
 
 
-Left Join：
+Left Join：    (左连接) 从左表那里返回所有的行，即使在右表中没有匹配的行 （左表全部输出，若左表中没有右表的对应值，则该项值空，右表中对应没有左表的值，该项不显示）
+
+               select Persons.LastName,Persons.FirstName,Orders.OrderNo from Persons left join Orders on Persons.Id_p = Orders.Id_p order by Persons.LastName;
 
 
-Right Join：
+Right Join：   (右连接) 从右表那里返回所有的行，即使在左表中没有匹配的行 （右表全部输出，若左表中没有右表的对应值，该项不显示，右表中对应没有左表的值，则该项值空）
+
+                select Persons.LastName,Persons.FirstName,Orders.OrderNo from Persons right join Orders on Persons.Id_p = Orders.Id_p Order by Persons.LastName;
 
 
-Full join：
+Full join：    
 
 
 Union：
